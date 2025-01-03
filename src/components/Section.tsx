@@ -7,10 +7,11 @@ const Container= styled.div`
 `
 interface SectionProps {
     children: React.ReactNode;
+    className?: string;
   }  
 
-export default function Section({children}: SectionProps) {
+export default function Section({ children, className }: SectionProps) {
   return (
-    <Container>{children}</Container>
+    <Container className={className}>{children}</Container>
   )
 }

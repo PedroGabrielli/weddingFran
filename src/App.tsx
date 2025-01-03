@@ -1,4 +1,4 @@
-import { Timeline } from "antd"
+import Timeline from "./pages/Timeline"
 import Gallery from "./pages/Gallery"
 import Portada from "./pages/Portada"
 import Presentacion from "./pages/Presentacion"
@@ -13,15 +13,12 @@ function App() {
   return (
     <div>
       <Portada/>
-      
       <Presentacion />
       <Gallery />
       <Timeline />
       <Evento />
       <Presents />
       <Confirmation />
-
-      
     </div>
   )
 }
