@@ -19,7 +19,8 @@ const BottomProfileContainer = styled(ProfileContainer)`
   justify-content: flex-end;
 `
 const Photo = styled.img`
-  height: 45vh;
+  max-height: 45vh;
+  width: 45vw;
   margin: 0 4rem; 
 `
 const TextContainer = styled.p`
