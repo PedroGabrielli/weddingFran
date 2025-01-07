@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.2",
+    "@fontsource/dancing-script": "^5.1.1",
+    "@fontsource/roboto": "^5.1.1",
     "antd": "^5.22.2",
     "date-fns": "^4.1.0",
     "lodash": "^4.17.21",
