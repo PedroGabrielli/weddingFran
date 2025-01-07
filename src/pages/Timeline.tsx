@@ -57,6 +57,16 @@ const ResponsiveImage = styled.img`
   border-radius: 8px;
 `;
 
+const Title = styled.p`
+  font-family: "Dancing Script", cursive;
+  font-size: 6rem; /* Large size for desktop */
+  margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 3rem; /* Smaller size for mobile */
+  }
+`
+
 const Column: React.FC<{ items: { type?: 'text' | 'image'; value: string }[] }> = ({ items }) => {
   return (
     <StyledColumn>
