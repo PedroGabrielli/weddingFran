@@ -7,17 +7,13 @@ const ConfirmationContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(to bottom, #fff9f6, #fce9e3);
-  color: #6c3e3e;
   font-family: 'Georgia', serif;
   text-align: center;
-  padding: 2rem;
 `;
 
 const ConfirmationTitle = styled.h1`
   font-size: calc(3vh + 2vw);
-  margin-bottom: 2rem;
-  color: #6c3e3e;
+  color:  ${({ theme }) => theme.colors.primary};
 `;
 
 const Button = styled.a`
@@ -25,7 +21,7 @@ const Button = styled.a`
   font-size: calc(1.2vh + 1vw);
   font-weight: bold;
   color: white;
-  background-color: #6c3e3e;
+  background-color:  ${({ theme }) => theme.colors.primary};
   border: none;
   border-radius: 8px;
   text-decoration: none;
@@ -38,9 +34,9 @@ const Button = styled.a`
 `;
 
 const FooterText = styled.p`
-  font-size: calc(1vh + 0.8vw);
-  margin-top: 2rem;
-  color: #8a6d6d;
+  font-size: calc(2vh + 0.8vw);
+  margin-bottom: 4rem;
+  color:  ${({ theme }) => theme.colors.primary};
 `;
 
 export default function ConfirmationPage() {

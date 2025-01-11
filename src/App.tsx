@@ -4,6 +4,8 @@ import Portada from "./pages/Portada"
 import Presentacion from "./pages/Presentacion"
 import Confirmation from "./pages/Confirmation"
 import Evento from "./pages/Evento"
+import { theme } from "./theme/theme"
+import { ThemeProvider } from "styled-components"
 
 import './App.css'
 
@@ -11,6 +13,7 @@ import './App.css'
 function App() {
 
   return (
+    <ThemeProvider theme={theme}>
     <div>
       <Portada/>
       <Presentacion />
@@ -19,6 +22,7 @@ function App() {
       <Evento />
       <Confirmation />
     </div>
+    </ThemeProvider>
   )
 }
 

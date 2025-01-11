@@ -1,5 +1,10 @@
 import Section from '../components/Section';
 import styled from 'styled-components';
+import { Subtitle, Title } from '../components/Title';
+import Met from '../assets/photos/nosConocimos.JPG';
+import FirstDate from '../assets/photos/primeraCita.jpeg';
+import Couple from '../assets/photos/paris.jpg';
+import Proposal from '../assets/photos/propuesta.jpg'
 
 const TimelineContainer = styled.div`
   display: flex;
@@ -14,7 +19,7 @@ const TimelineContainer = styled.div`
 const TimelineLine = styled.div`
   width: 4px;
   height: 100%;
-  background-color: #364d79;
+  background-color: ${({ theme }) => theme.colors.primary};
   position: relative;
 `;
 
@@ -24,7 +29,7 @@ const Dot = styled.div`
   transform: translate(-50%, -50%);
   width: 20px;
   height: 20px;
-  background-color: #364d79;
+  background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
 `;
 
@@ -57,24 +62,17 @@ const ResponsiveImage = styled.img`
   border-radius: 8px;
 `;
 
-const Title = styled.p`
-  font-family: "Dancing Script", cursive;
-  font-size: 6rem; /* Large size for desktop */
-  margin: 0;
-
-  @media (max-width: 768px) {
-    font-size: 3rem; /* Smaller size for mobile */
-  }
-`
-
-const Column: React.FC<{ items: { type?: 'text' | 'image'; value: string }[] }> = ({ items }) => {
+const Column: React.FC<{ items: { type?: 'text' | 'image'; value: string, secondaryValue?: string }[] }> = ({ items }) => {
   return (
     <StyledColumn>
       {items.map((item, index) => (
         <Row key={index}>
           <Content>
             {item.type === 'text' || !item.type ? (
-              <p>{item.value}</p>
+              <div>
+                <Title>{item.value}</Title>
+                <Subtitle>{item?.secondaryValue}</Subtitle>
+              </div>
             ) : (
               <ResponsiveImage src={item.value} alt="Column Item" />
             )}
@@ -87,17 +85,17 @@ const Column: React.FC<{ items: { type?: 'text' | 'image'; value: string }[] }> 
 
 export default function Timeline() {
   const leftItems = [
-    { type: 'image', value: 'https://via.placeholder.com/300' },
-    { type: 'text', value: 'Text' },
-    { type: 'image', value: 'https://via.placeholder.com/300' },
-    { type: 'text', value: 'Text' },
+    { type: 'image', value: Met },
+    { type: 'text', value: 'Primera cita', secondaryValue: '18-12-2021' },
+    { type: 'image', value: Couple },
+    { type: 'text', value: 'La propuesta', secondaryValue: '19-8-2024' },
   ];
 
   const rightItems = [
-    { type: 'text', value: 'Text' },
-    { type: 'image', value: 'https://via.placeholder.com/300' },
-    { type: 'text', value: 'Text' },
-    { type: 'image', value: 'https://via.placeholder.com/300' },
+    { type: 'text', value: 'Nos conocimos', secondaryValue: '10-12-2021' },
+    { type: 'image', value: FirstDate },
+    { type: 'text', value: 'Nos hicimos novios', secondaryValue: '16-3-2022' },
+    { type: 'image', value: Proposal },
   ];
 
   return (

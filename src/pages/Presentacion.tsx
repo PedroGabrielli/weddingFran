@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Section from '../components/Section';
 import ProfilePhoto from '../assets/placeholders/profilephoto.jpeg';
 import { presentacionUno, presentacionDos } from '../constants/Presentacion.constants';
+import { Subtitle, Text } from '../components/Title';
 
 // Styled Components
 const SectionContainer = styled(Section)`
@@ -45,7 +46,6 @@ const Photo = styled.img`
 const TextContainer = styled.div`
   max-height: 80%; /* Text container takes 80% of its container's height */
   width: 50%; /* Set a max width for text container */
-  font-family: 'Roboto', sans-serif;
   font-size: 1.25rem; /* Default size for readability */
   line-height: 1.5;
   text-align: center;
@@ -63,13 +63,21 @@ const TextContainer = styled.div`
 export default function Presentacion() {
   return (
     <SectionContainer>
+      <ProfileContainer reverse>
+        <TextContainer>
+            <Subtitle>
+              {presentacionDos}
+            </Subtitle>
+          </TextContainer>
+        <Photo src={ProfilePhoto} alt="Profile Photo" />
+      </ProfileContainer>
       <ProfileContainer>
         <Photo src={ProfilePhoto} alt="Profile Photo" />
-        <TextContainer>{presentacionUno}</TextContainer>
-      </ProfileContainer>
-      <ProfileContainer reverse>
-        <TextContainer>{presentacionDos}</TextContainer>
-        <Photo src={ProfilePhoto} alt="Profile Photo" />
+        <TextContainer>
+          <Subtitle>
+          {presentacionUno}
+          </Subtitle>
+        </TextContainer>
       </ProfileContainer>
     </SectionContainer>
   );

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Section from "../components/Section";
-import BackgroundPhoto from "../assets/placeholders/gettyimages-868924246-1024x1024.jpg";
+import BackgroundPhoto from "../assets/photos/portada.jpg";
 import RemainingTime from "../components/RemainingTime";
 import { format } from "date-fns";
 import { Button } from "antd";
@@ -16,12 +16,11 @@ const Container = styled.div`
   width: 100%;
   height: 100vh;
   align-items: center;
-  justify-content: center;
   background-image: url(${BackgroundPhoto});
   background-size: cover; /* Ensures the image covers the container */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Avoids tiling the image */
-  color: white; /* Sets text color to stand out against the background */
+  color: white;
   gap: 1.5rem; /* Adjust spacing between elements */
   background-attachment: fixed; /* Enables parallax effect */
 
@@ -32,9 +31,8 @@ const Container = styled.div`
 `;
 
 const Message = styled.p`
-  font-family: "Dancing Script", cursive;
   font-size: 6rem; /* Large size for desktop */
-  margin: 0;
+
 
   @media (max-width: 768px) {
     font-size: 3rem; /* Smaller size for mobile */
@@ -42,7 +40,6 @@ const Message = styled.p`
 `;
 
 const Names = styled.p`
-  font-family: "Dancing Script", cursive;
   font-size: 4rem; /* Large size for names */
   margin: 0;
 
@@ -52,7 +49,6 @@ const Names = styled.p`
 `;
 
 const DateLabel = styled.p`
-  font-family: 'Dancing Script', cursive;
   font-size: 1.5rem; /* Standard size for date label */
   margin: 0;
 
@@ -62,7 +58,6 @@ const DateLabel = styled.p`
 `;
 
 const StyledButton = styled(Button)`
-  font-family: "Roboto", sans-serif;
   font-size: 1.2rem;
   padding: 0.5rem 1.5rem;
 

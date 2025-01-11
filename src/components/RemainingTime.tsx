@@ -20,7 +20,7 @@ const StatContainer = styled.div`
   gap: 4rem;
 
   @media (max-width: 768px) {
-    flex-direction: column;
+    flex-direction: row;
     gap: 1rem; /* Reduced gap for smaller screens */
   }
 `;

@@ -4,6 +4,7 @@ import ChurchIcon from '../assets/placeholders/church-svgrepo-com.svg'
 import PartyIcon from '../assets/placeholders/cheers-toast-svgrepo-com.svg'
 import PresentIcon from '../assets/placeholders/present-svgrepo-com.svg'
 import DressIcon from '../assets/placeholders/bow-tie-svgrepo-com.svg'
+import { Subtitle, Text, Title } from '../components/Title';
 
 const EventContainer = styled.div`
   display: flex;
@@ -11,9 +12,9 @@ const EventContainer = styled.div`
   justify-content: space-evenly;
   align-items: center;
   padding: 2vh 1vw;
-  background-color: #fff9f6;
-  color: #6c3e3e;
-  font-family: 'Georgia', serif;
+  background-color: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.text};
+  font-family: ${({ theme }) => theme.fonts.primary};
   height: 100vh;
 
   @media (max-width: 768px) {
@@ -38,9 +39,9 @@ const EventBlock = styled.div`
 `;
 
 const EventTitle = styled.h2`
-  font-size: calc(2vh + 1vw); /* Responsive font size based on viewport */
+  font-size: calc(2vh + 1vw);
   margin-bottom: 1vh;
-  color: #6c3e3e;
+  color: ${({ theme }) => theme.colors.primary};
 
   @media (max-width: 768px) {
     font-size: calc(1.5vh + 1vw);
@@ -51,7 +52,7 @@ const EventTime = styled.p`
   font-size: calc(4vh + 1vw);
   font-weight: bold;
   margin: 0.5vh 0;
-  color: #6c3e3e;
+  color: ${({ theme }) => theme.colors.text};
 
   @media (max-width: 768px) {
     font-size: calc(1.5vh + 1vw);
@@ -59,9 +60,9 @@ const EventTime = styled.p`
 `;
 
 const EventLocation = styled.p`
-  font-size: calc(1.5vh + 0.8vw); /* Slightly smaller for secondary text */
+  font-size: calc(1.5vh + 0.8vw);
   margin: 0.2vh 0;
-  color: #8a6d6d;
+  color: ${({ theme }) => theme.colors.text};
 
   @media (max-width: 768px) {
     font-size: calc(1.2vh + 0.8vw);
@@ -71,7 +72,7 @@ const EventLocation = styled.p`
 const Divider = styled.div`
   width: 2px;
   height: auto;
-  background-color: #d8c2ba;
+  background-color: ${({ theme }) => theme.colors.primary};
   align-self: stretch;
 
   @media (max-width: 768px) {
@@ -84,7 +85,11 @@ const EventImage = styled.img`
   height: 15vw;
   max-width: 128px;
   max-height: 128px;
-  margin-bottom: 1vh;
+  color: ${({ theme }) => theme.colors.primary};
+
+  & path {
+    fill: ${({ theme }) => theme.colors.primary}; /* Apply primary color */
+  }
 
   @media (max-width: 768px) {
     width: 20vw;
@@ -100,7 +105,7 @@ const MapContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: lightGray;
+  background-color: ${({ theme }) => theme.colors.secondary};
   border-radius: 14px;
   margin-top: 2vh;
 
@@ -116,32 +121,33 @@ export default function Evento() {
       <EventContainer>
         <EventBlock>
           <EventImage src={ChurchIcon} alt="Ceremonia" />
-          <EventTitle>Ceremonia</EventTitle>
-          <EventTime>4 pm</EventTime>
-          <EventLocation>IGLESIA<br />DIRECCION IGLESIA</EventLocation>
+          <Title>Ceremonia</Title>
+          <Subtitle>4 pm</Subtitle>
+          <Text>Iglesa<br />Direccion Iglesia</Text>
         </EventBlock>
 
         <Divider />
 
         <EventBlock>
           <EventImage src={PartyIcon} alt="Fiesta" />
-          <EventTitle>Recepción</EventTitle>
-          <EventTime>7 pm</EventTime>
-          <EventLocation>SALON<br />DIRECCION SALON</EventLocation>
-        </EventBlock>
-        <Divider />
-        <EventBlock>
-          <EventImage src={PresentIcon} alt="Fiesta" />
-          <EventTitle>Regalo</EventTitle>
-          <EventLocation>Payoneer</EventLocation>
-          <EventLocation>Solo dolares</EventLocation>
-          <EventLocation>No sean ratas</EventLocation>
+          <Title>Recepción</Title>
+          <Subtitle>7 pm</Subtitle>
+          <Subtitle>Santa Barbara</Subtitle>
+          <Text>
+            Av. Cdad. de Valparaíso 6000
+          </Text>
         </EventBlock>
         <Divider />
         <EventBlock>
           <EventImage src={DressIcon} alt="Fiesta" />
-          <EventTitle>Dress Code</EventTitle>
-          <EventLocation>Formal</EventLocation>
+          <Title>Dress Code</Title>
+          <Subtitle>Formal</Subtitle>
+        </EventBlock>
+        <Divider />
+        <EventBlock>
+          <EventImage src={PresentIcon} alt="Fiesta" />
+          <Title>Regalo</Title>
+          <Subtitle>Payoneer</Subtitle>
         </EventBlock>
       </EventContainer>
     </Section>
