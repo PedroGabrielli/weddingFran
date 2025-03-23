@@ -5,20 +5,29 @@
   "type": "module",
   "scripts": {
     "start": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.2",
+    "@fontsource/alex-brush": "^5.2.5",
+    "@fontsource/amatic-sc": "^5.1.1",
     "@fontsource/dancing-script": "^5.1.1",
+    "@fontsource/love-light": "^5.2.5",
+    "@fontsource/parisienne": "^5.1.1",
+    "@fontsource/qwitcher-grypen": "^5.2.5",
     "@fontsource/roboto": "^5.1.1",
     "antd": "^5.22.2",
     "date-fns": "^4.1.0",
+    "firebase": "^11.5.0",
     "lodash": "^4.17.21",
+    "rc-queue-anim": "^2.0.0",
+    "rc-scroll-anim": "^2.7.6",
     "rc-tween-one": "^3.0.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-icons": "^5.4.0",
     "styled-components": "^6.1.13"
   },
   "devDependencies": {

@@ -1,32 +1,43 @@
 import styled from "styled-components";
 
 export const Title = styled.h2`
-  font-size: calc(2vh + 1vw); /* Responsive font size */
-  margin-bottom: 1vh;
+  font-size: calc(5vh + 2vw); /* Increased size */
+  font-family: 'Amatic SC', sans-serif;
   color: ${({ theme }) => theme.colors.primary};
+  line-height: 1.2; /* Improved readability */
+  letter-spacing: 1px;
+  margin: 0;
+  font-size: calc(3.1vh + 2vw);
+`;
 
-  @media (max-width: 768px) {
-    font-size: calc(1.5vh + 1vw);
-  }
+export const TitleCursive = styled(Title)`
+  font-family: 'Parisienne', cursive;
+  font-size: calc(3vh + 2.5vw);
 `;
 
 export const Subtitle = styled.p`
-  font-size: calc(4vh + 1vw); /* Larger for emphasis */
   font-weight: bold;
-  margin: 0.5vh 0;
+  margin: 0;
+  font-family: 'Amatic SC', sans-serif;
   color: ${({ theme }) => theme.colors.text};
+  line-height: 1.3;
+  font-size: calc(2.5vh + 1vw);
+`;
 
-  @media (max-width: 768px) {
-    font-size: calc(1.5vh + 1vw);
-  }
+export const SubtitleCursive = styled(Subtitle)`
+  font-family: 'Parisienne', cursive;
+  font-size: calc(2vh + 2vw);
 `;
 
 export const Text = styled.p`
-  font-size: calc(1.5vh + 0.8vw); /* Smaller for secondary text */
-  margin: 0.2vh 0;
+  margin: 0;
+  font-family: 'Amatic SC', sans-serif;
   color: ${({ theme }) => theme.colors.text};
+  line-height: 1.4;
+  font-size: calc(2.5vh + 1vw);
+`;
 
-  @media (max-width: 768px) {
-    font-size: calc(1.2vh + 0.8vw);
-  }
+export const TextCursive = styled(Text)`
+  font-family: 'Parisienne', cursive;
+  font-size: calc(4vh + 1vw);
 `;

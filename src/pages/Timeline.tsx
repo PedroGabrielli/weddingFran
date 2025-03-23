@@ -1,19 +1,29 @@
 import Section from '../components/Section';
 import styled from 'styled-components';
-import { Subtitle, Title } from '../components/Title';
-import Met from '../assets/photos/nosConocimos.JPG';
-import FirstDate from '../assets/photos/primeraCita.jpeg';
+import { Subtitle, Text, TitleCursive } from '../components/Title';
+import Met from '../assets/photos/nosConocimos.jpeg';
+import FirstDate from '../assets/photos/primeraCita.png';
 import Couple from '../assets/photos/paris.jpg';
 import Proposal from '../assets/photos/propuesta.jpg'
+import { Parallax } from 'rc-scroll-anim';
+
+const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 10vh;
+`
 
 const TimelineContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 90vh;
   width: 100%;
   position: relative;
+  overflow: hidden;
 `;
 
 const TimelineLine = styled.div`
@@ -46,20 +56,21 @@ const Row = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 25%; /* Assuming 4 rows */
+  
+  flex: 1;
   width: 100%;
 `;
 
 const Content = styled.div`
   text-align: center;
-  width: 90%; /* Adjust as needed */
+  width: 90%;
 `;
 
 const ResponsiveImage = styled.img`
   width: 100%;
-  height: 150px; /* Fixed height for uniformity */
-  object-fit: cover; /* Ensures the image maintains aspect ratio while filling the space */
-  border-radius: 8px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 2px;
 `;
 
 const Column: React.FC<{ items: { type?: 'text' | 'image'; value: string, secondaryValue?: string }[] }> = ({ items }) => {
@@ -69,14 +80,22 @@ const Column: React.FC<{ items: { type?: 'text' | 'image'; value: string, second
         <Row key={index}>
           <Content>
             {item.type === 'text' || !item.type ? (
-              <div>
-                <Title>{item.value}</Title>
-                <Subtitle>{item?.secondaryValue}</Subtitle>
-              </div>
+              <Parallax
+                animation={{ x: 0, playScale: index === items.length - 1 ? [0, 0.1] : [0.05, 0.3] }}
+                style={{ transform: `translateX(${index % 2 === 0 ? '100px' : '-100px'})`, margin: '10px auto' }}
+              >
+                <div>
+                  <Subtitle>{item.value}</Subtitle>
+                  <Text>{item?.secondaryValue}</Text>
+                </div>
+              </Parallax>
             ) : (
+
               <ResponsiveImage src={item.value} alt="Column Item" />
+
             )}
           </Content>
+
         </Row>
       ))}
     </StyledColumn>
@@ -86,20 +105,23 @@ const Column: React.FC<{ items: { type?: 'text' | 'image'; value: string, second
 export default function Timeline() {
   const leftItems = [
     { type: 'image', value: Met },
-    { type: 'text', value: 'Primera cita', secondaryValue: '18-12-2021' },
+    { type: 'text', value: 'Primera cita', secondaryValue: '18/12/2021' },
     { type: 'image', value: Couple },
-    { type: 'text', value: 'La propuesta', secondaryValue: '19-8-2024' },
+    { type: 'text', value: 'Nos comprometimos', secondaryValue: '19/08/2024' },
   ];
 
   const rightItems = [
-    { type: 'text', value: 'Nos conocimos', secondaryValue: '10-12-2021' },
+    { type: 'text', value: 'Nos conocimos', secondaryValue: '19/09/2021' },
     { type: 'image', value: FirstDate },
-    { type: 'text', value: 'Nos hicimos novios', secondaryValue: '16-3-2022' },
+    { type: 'text', value: 'Nos hicimos novios', secondaryValue: '16/03/2022' },
     { type: 'image', value: Proposal },
   ];
 
   return (
     <Section>
+      <TitleContainer>
+        <TitleCursive>Nuestra historia</TitleCursive>
+      </TitleContainer>
       <TimelineContainer>
         <Column items={leftItems} />
         <TimelineLine>

@@ -14,15 +14,11 @@ import '@fontsource/roboto';
 
 const StatContainer = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 4rem;
+  flex-direction: row;
+  gap: 1rem;
 
-  @media (max-width: 768px) {
-    flex-direction: row;
-    gap: 1rem; /* Reduced gap for smaller screens */
-  }
 `;
 
 interface IRemainingTime {

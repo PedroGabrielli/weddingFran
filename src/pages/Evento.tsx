@@ -1,155 +1,123 @@
-import Section from '../components/Section';
 import styled from 'styled-components';
-import ChurchIcon from '../assets/placeholders/church-svgrepo-com.svg'
-import PartyIcon from '../assets/placeholders/cheers-toast-svgrepo-com.svg'
-import PresentIcon from '../assets/placeholders/present-svgrepo-com.svg'
-import DressIcon from '../assets/placeholders/bow-tie-svgrepo-com.svg'
-import { Subtitle, Text, Title } from '../components/Title';
+import ChurchIcon from '../assets/placeholders/church-svgrepo-com.svg';
+import PartyIcon from '../assets/placeholders/cheers-toast-svgrepo-com.svg';
+import DressIcon from '../assets/placeholders/bow-tie-svgrepo-com.svg';
+import { Subtitle, Text, TitleCursive } from '../components/Title';
+import { Button } from 'antd';
+import { FaMapMarkedAlt } from 'react-icons/fa';
+import { theme } from '../theme/theme';
+import { eventLocation, churchLocation } from '../constants/eventLocationUrl';
+import { Parallax } from 'rc-scroll-anim';
 
 const EventContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
   align-items: center;
   padding: 2vh 1vw;
   background-color: ${({ theme }) => theme.colors.background};
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.primary};
-  height: 100vh;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    justify-content: space-evenly;
-    padding: 1vh 1vw;
-  }
+  min-height: 100vh;
+  flex-wrap: wrap; /* Ensures wrapping if content is too large */
+  overflow: hidden; /* Prevents extra white space */
+  flex-direction: column;
+  justify-content: space-evenly;
 `;
 
-const EventBlock = styled.div`
+export const EventBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   flex: 1;
-  padding: 0 1vw;
-
-  @media (max-width: 768px) {
-    padding: 1vh 0;
-  }
-`;
-
-const EventTitle = styled.h2`
-  font-size: calc(2vh + 1vw);
-  margin-bottom: 1vh;
-  color: ${({ theme }) => theme.colors.primary};
-
-  @media (max-width: 768px) {
-    font-size: calc(1.5vh + 1vw);
-  }
-`;
-
-const EventTime = styled.p`
-  font-size: calc(4vh + 1vw);
-  font-weight: bold;
-  margin: 0.5vh 0;
-  color: ${({ theme }) => theme.colors.text};
-
-  @media (max-width: 768px) {
-    font-size: calc(1.5vh + 1vw);
-  }
-`;
-
-const EventLocation = styled.p`
-  font-size: calc(1.5vh + 0.8vw);
-  margin: 0.2vh 0;
-  color: ${({ theme }) => theme.colors.text};
-
-  @media (max-width: 768px) {
-    font-size: calc(1.2vh + 0.8vw);
-  }
+  min-width: 20%;
+  max-width: 100%;
+  padding: 1vh 0;
 `;
 
 const Divider = styled.div`
   width: 2px;
-  height: auto;
+  height: 80%; /* Prevents stretching */
   background-color: ${({ theme }) => theme.colors.primary};
   align-self: stretch;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
+  display: none;
 `;
 
-const EventImage = styled.img`
-  width: 15vw;
-  height: 15vw;
-  max-width: 128px;
-  max-height: 128px;
+export const EventImage = styled.img`
   color: ${({ theme }) => theme.colors.primary};
-
   & path {
     fill: ${({ theme }) => theme.colors.primary}; /* Apply primary color */
   }
-
-  @media (max-width: 768px) {
-    width: 20vw;
-    height: 20vw;
-  }
+  width: 18vw;
+  height: 18vw;
+  max-width: 80px;
+  max-height: 80px;
 `;
 
-const MapContainer = styled.div`
-  height: calc(20vh + 5vw);
-  width: calc(20vh + 5vw);
-  max-height: 240px;
-  max-width: 240px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${({ theme }) => theme.colors.secondary};
-  border-radius: 14px;
-  margin-top: 2vh;
-
-  @media (max-width: 768px) {
-    height: calc(15vh + 5vw);
-    width: calc(15vh + 5vw);
-  }
-`;
+const StyledButton = styled(Button)`
+  margin-top: 0.5rem;
+  background-color: ${theme.colors.primary};
+  color: white;
+`
 
 export default function Evento() {
+
+  const handleOpenMap = () => {
+    const googleMapsUrl = eventLocation;
+    window.open(googleMapsUrl, "_blank");
+  }
+
+  const handleOpenChurchMap = () => {
+    const googleMapsUrl = churchLocation;
+    window.open(googleMapsUrl, "_blank");
+  }
+
   return (
-    <Section>
-      <EventContainer>
+    <EventContainer>
+      <Parallax
+        animation={{ x: 0, playScale: [0.05, 0.5]}}
+        style={{ transform: 'translateX(-100px)', margin: '10px auto' }}
+      >
         <EventBlock>
           <EventImage src={ChurchIcon} alt="Ceremonia" />
-          <Title>Ceremonia</Title>
-          <Subtitle>4 pm</Subtitle>
-          <Text>Iglesa<br />Direccion Iglesia</Text>
+          <TitleCursive>Iglesia</TitleCursive>
+          <Subtitle>5:00 pm</Subtitle>
+          <Subtitle>Parroquia Cristo Redentor</Subtitle>
+          <Text>Gdor. Justiniano Posse 864</Text>
+          <Button onClick={handleOpenChurchMap} type='primary' icon={<FaMapMarkedAlt />}>
+            Ver mapa
+          </Button>
         </EventBlock>
-
-        <Divider />
-
-        <EventBlock>
+      </Parallax>
+      <Divider />
+      <Parallax
+        animation={{ x: 0, playScale: [0.05, 0.5]}}
+        style={{ transform: 'translateX(100px)', margin: '10px auto' }}
+      > <EventBlock>
           <EventImage src={PartyIcon} alt="Fiesta" />
-          <Title>Recepción</Title>
-          <Subtitle>7 pm</Subtitle>
-          <Subtitle>Santa Barbara</Subtitle>
-          <Text>
-            Av. Cdad. de Valparaíso 6000
-          </Text>
+          <TitleCursive>Recepción</TitleCursive>
+          <Subtitle>6:30 pm</Subtitle>
+          <Subtitle>Salón Santa Barbara</Subtitle>
+          <Text>Av. Cdad. de Valparaíso 6000</Text>
+          <Button onClick={handleOpenMap} type='primary' icon={<FaMapMarkedAlt />}>
+            Ver mapa
+          </Button>
         </EventBlock>
-        <Divider />
+      </Parallax>
+      <Divider />
+      <Parallax
+        animation={{ x: 0, playScale: [0.0, 0.3]}}
+        style={{ transform: 'translateX(-100px)', margin: '10px auto' }}
+      >
         <EventBlock>
-          <EventImage src={DressIcon} alt="Fiesta" />
-          <Title>Dress Code</Title>
+          <EventImage src={DressIcon} alt="Dress Code" />
+          <TitleCursive>Vestimenta</TitleCursive>
           <Subtitle>Formal</Subtitle>
+          <Text>¡Luce tu mejor look!</Text>
         </EventBlock>
-        <Divider />
-        <EventBlock>
-          <EventImage src={PresentIcon} alt="Fiesta" />
-          <Title>Regalo</Title>
-          <Subtitle>Payoneer</Subtitle>
-        </EventBlock>
-      </EventContainer>
-    </Section>
+      </Parallax>
+      <Divider />
+    </EventContainer>
   );
 }

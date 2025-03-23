@@ -12,31 +12,20 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-
-  @media (max-width: 768px) {
-    gap: 0.25rem; /* Reduced gap for smaller screens */
-  }
+  gap: 0.25rem;
 `;
 
 const Label = styled.p`
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.75rem; /* 28px */
+  font-family: 'Amatic SC', sans-serif;
+  font-size: 3rem; /* 28px */
   margin: 0;
-
-  @media (max-width: 768px) {
-    font-size: 1.25rem; /* 20px */
-  }
+  font-size: 1.7rem; /* 20px */
 `;
 
 const Value = styled.p`
-  font-family: 'Dancing Script', cursive;
-  font-size: 2rem; /* 32px */
+  font-family: 'Amatic SC', sans-serif;  font-size: 3rem; /* 32px */
   margin: 0;
-
-  @media (max-width: 768px) {
-    font-size: 1.75rem; /* 28px */
-  }
+  font-size: 1.7rem;
 `;
 
 // Functional Component

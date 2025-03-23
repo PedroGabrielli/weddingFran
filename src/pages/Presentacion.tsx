@@ -1,46 +1,31 @@
 import styled from 'styled-components';
-import Section from '../components/Section';
-import ProfilePhoto from '../assets/placeholders/profilephoto.jpeg';
+import Profile2 from '../assets/photos/presentacionFran.jpeg';
+import Profile1 from '../assets/photos/presentacionAdri.jpg';
 import { presentacionUno, presentacionDos } from '../constants/Presentacion.constants';
-import { Subtitle, Text } from '../components/Title';
+import { Text } from '../components/Title';
+import { theme } from '../theme/theme';
 
-// Styled Components
-const SectionContainer = styled(Section)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Ensure the entire section fits within the viewport */
-  overflow: hidden; /* Prevent content overflow */
-`;
+const Container = styled.div`
+  background-color: ${theme.colors.background};
+  padding: 2rem 0;
+`
 
 const ProfileContainer = styled.div<{ reverse?: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 50%; /* Each profile section takes 50% of the viewport height */
-  padding: 1rem;
-
-  @media (max-width: 768px) {
-    flex-direction: ${({ reverse }) => (reverse ? 'column-reverse' : 'column')};
-    height: auto; /* Allow sections to adjust dynamically */
-    padding: 0.5rem;
-  }
+  padding: 1rem 1rem;
+  flex-direction: ${({ reverse }) => (reverse ? 'column-reverse' : 'column')};
+  height: auto;
+  padding: 0.5rem;
 `;
 
 const Photo = styled.img`
-  max-height: 80%; /* Photo takes 80% of its container's height */
-  max-width: 40%; /* Maintain aspect ratio */
-  border-radius: 10px; /* Add subtle rounding for aesthetics */
-  margin: 0 1rem;
-
-  @media (max-width: 768px) {
-    max-height: 50%; /* Adjust photo size on smaller screens */
-    max-width: 70%; /* Allow photo to stretch horizontally if needed */
-    margin: 0.5rem 0;
-  }
+  object-fit: cover;       /* Ensures the image covers the container and crops if needed */
+  border-radius: 10px;     /* Adds subtle rounding for aesthetics */
+  height: auto;
+  width: 80%;
+  margin: 0.5rem 0;
 `;
 
 const TextContainer = styled.div`
@@ -50,35 +35,37 @@ const TextContainer = styled.div`
   line-height: 1.5;
   text-align: center;
   margin: 0 1rem;
-
-  @media (max-width: 768px) {
-    font-size: 1rem; /* Reduce font size for smaller screens */
-    line-height: 1.4;
-    width: 90%; /* Expand width for mobile */
-    margin: 0.5rem;
-  }
+  font-size: 1rem;
+  line-height: 1.4;
+  width: 90%; /* Expand width for mobile */
+  margin: 0.5rem;
 `;
+
+const DescriptionText = styled(Text)`
+  line-height: 1;
+  font-size: calc(2.5vh + 1vw);
+`
 
 // Functional Component
 export default function Presentacion() {
   return (
-    <SectionContainer>
+    <Container>
       <ProfileContainer reverse>
         <TextContainer>
-            <Subtitle>
+            <DescriptionText>
               {presentacionDos}
-            </Subtitle>
+            </DescriptionText>
           </TextContainer>
-        <Photo src={ProfilePhoto} alt="Profile Photo" />
+        <Photo src={Profile1} alt="Profile Photo" />
       </ProfileContainer>
       <ProfileContainer>
-        <Photo src={ProfilePhoto} alt="Profile Photo" />
+        <Photo src={Profile2} alt="Profile Photo" />
         <TextContainer>
-          <Subtitle>
+          <DescriptionText>
           {presentacionUno}
-          </Subtitle>
+          </DescriptionText>
         </TextContainer>
       </ProfileContainer>
-    </SectionContainer>
+      </Container>
   );
 }
