@@ -7,17 +7,18 @@
     "start": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate-photos": "tsx src/utils/generatePhotoService.ts"
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.2",
     "@fontsource/alex-brush": "^5.2.5",
     "@fontsource/amatic-sc": "^5.1.1",
-    "@fontsource/dancing-script": "^5.1.1",
+    "@fontsource/dancing-script": "^5.2.6",
     "@fontsource/love-light": "^5.2.5",
     "@fontsource/parisienne": "^5.1.1",
-    "@fontsource/qwitcher-grypen": "^5.2.5",
-    "@fontsource/roboto": "^5.1.1",
+    "@fontsource/qwitcher-grypen": "^5.2.6",
+    "@fontsource/roboto": "^5.2.6",
     "antd": "^5.22.2",
     "date-fns": "^4.1.0",
     "firebase": "^11.5.0",

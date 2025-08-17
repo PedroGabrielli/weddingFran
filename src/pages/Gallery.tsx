@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Section from '../components/Section';
-import { Carousel } from 'antd';
-import { CarouselPhotos } from '../constants/Gallery.constants';
+import { Carousel, Spin, Alert } from 'antd';
+import { useGallery } from '../hooks/useGallery';
 
 const PhotoContainer = styled.div`
   height: 100vh;
@@ -21,15 +21,43 @@ const Photo = styled.img`
 `;
 
 export default function Gallery() {
+  const { photoUrls, loading, error } = useGallery();
+
   return (
     <Section>
-      <Carousel autoplay arrows dots={true}>
-        {CarouselPhotos.map((photo, index) => (
-          <PhotoContainer key={index}>
-            <Photo src={photo} alt={`Carousel photo ${index + 1}`} />
-          </PhotoContainer>
-        ))}
-      </Carousel>
+      {loading && (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
+          <Spin size="large" />
+        </div>
+      )}
+
+      {error && (
+        <Alert 
+          message="Error al cargar las fotos" 
+          description={error} 
+          type="error" 
+          showIcon 
+        />
+      )}
+
+      {!loading && !error && photoUrls.length === 0 && (
+        <Alert 
+          message="No hay fotos disponibles" 
+          description="No se encontraron fotos en la galería" 
+          type="warning" 
+          showIcon 
+        />
+      )}
+
+      {!loading && !error && photoUrls.length > 0 && (
+        <Carousel autoplay arrows dots={true}>
+          {photoUrls.map((photo, index) => (
+            <PhotoContainer key={index}>
+              <Photo src={photo} alt={`Carousel photo ${index + 1}`} />
+            </PhotoContainer>
+          ))}
+        </Carousel>
+      )}
     </Section>
   );
 }

@@ -1,12 +1,14 @@
-import Section from '../components/Section'
+import Section from '../components/Section';
 import styled from 'styled-components';
-import { Text, Title, TitleCursive } from '../components/Title';
-import { Button, Modal } from "antd";
+import { Title } from '../components/Title';
+import { Button } from "antd";
 import { CalendarFilled } from "@ant-design/icons";
-import { googleCalendarUrl } from "../constants/calendarUrl";
 import { theme } from '../theme/theme';
-import PresentIcon from '../assets/placeholders/present-svgrepo-com.svg';
-import { useState } from 'react';
+import { textoInvitacion } from '../constants/confirmation';
+import { useConfirmationModals } from '../hooks/useConfirmationModals';
+import { BankDataModal } from '../components/confirmation/BankDataModal';
+import { AttendanceFormModal } from '../components/confirmation/AttendanceFormModal';
+import { GiftSection } from '../components/confirmation/GiftSection';
 
 const ConfirmationContainer = styled.div`
   display: flex;
@@ -26,7 +28,6 @@ const StyledButton = styled(Button)`
   color: ${theme.colors.primary};
   border: 1px solid ${theme.colors.primary};
   font-size: 1rem;
-  padding: 0.5rem 1rem;
 `;
 
 export const EventImage = styled.img`
@@ -41,71 +42,31 @@ export const EventImage = styled.img`
   max-height: 60px;
 `;
 
-const StyledTitleCursive = styled(TitleCursive)`
-  font-size: 2rem;
-  padding: 0.5rem 1rem;
-`
-
-const BankData = () => (
-  <div>
-    <p>Banco Galicia</p>
-    <p>ADRIANA CAROLINA AGUILERA MILLAN</p>
-    <p>CTA: 4016583-2 362-5</p>
-    <p>CBU: 00703626-30004016583251</p>
-    <p>ALIAS: COBRA.SORGO.SABANA</p>
-  </div>
-)
-
 export default function ConfirmationPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isFormOpen, setIsFormOpen] = useState(false)
-
-  const handleAddToCalendar = () => {
-    window.open(googleCalendarUrl, "_blank");
-  };
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleFormOk = () => {
-    setIsFormOpen(false)
-  }
-
-  const handleConfirmAttendance = () => {
-    setIsFormOpen(true)
-  };
+  const {
+    isBankModalOpen,
+    isFormModalOpen,
+    showBankModal,
+    closeBankModal,
+    showFormModal,
+    closeFormModal,
+    handleAddToCalendar
+  } = useConfirmationModals();
 
   return (
     <Section>
-      <Modal title="Datos bancarios" open={isModalOpen} onCancel={handleOk} footer={[
-          <Button key="submit" onClick={handleOk} type='primary'>
-            OK
-        </Button>
-         ]}>
-        <BankData />
-      </Modal>
-      <Modal title="Formulario de asistencia" open={isFormOpen} onCancel={handleFormOk} footer={[]}>
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScBlZwFxrKRPyg9XSOksAYERpu2pVdpMiHDZhcn3c5lE3DiEw/viewform?embedded=true" width="100%" height={window.innerHeight * 0.6} frameborder="0" marginheight="0" marginwidth="0">Cargando</iframe>
-      </Modal>
+      <BankDataModal isOpen={isBankModalOpen} onClose={closeBankModal} />
+      <AttendanceFormModal isOpen={isFormModalOpen} onClose={closeFormModal} />
+      
       <ConfirmationContainer>
-        <div>
-          <EventImage src={PresentIcon} alt="Regalo" />
-          <StyledTitleCursive>Regalo</StyledTitleCursive>
-          <Text>Estamos emocionados de compartir nuestro día especial contigo. Si deseas hacernos un regalo, un aporte monetario sería genial.</Text>
-          <Text>¡Gracias por ser parte!</Text>
-          <StyledButton type="primary" onClick={showModal} style={{ marginTop: '1rem'}}>
-            Ver datos bancarios
-          </StyledButton>
-        </div>
-        <Title>¡Estamos deseando verte allí!</Title>
-        <Button onClick={handleConfirmAttendance} type='primary' size='large'>
+        <GiftSection onShowBankData={showBankModal} />
+        
+        <Title>{textoInvitacion}</Title>
+        
+        <Button onClick={showFormModal} type='primary' size='large'>
           Confirmar asistencia
         </Button>
+        
         <StyledButton
           icon={<CalendarFilled />}
           iconPosition="end"

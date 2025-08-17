@@ -1,11 +1,14 @@
 import Section from '../components/Section';
 import styled from 'styled-components';
 import { Subtitle, Text, TitleCursive } from '../components/Title';
-import Met from '../assets/photos/nosConocimos.jpeg';
-import FirstDate from '../assets/photos/primeraCita.png';
-import Couple from '../assets/photos/paris.jpg';
-import Proposal from '../assets/photos/propuesta.jpg'
+import FirstPhoto from '../assets/photos/nosConocimos.jpeg';
+import SecondPhoto from '../assets/photos/primeraCita.png';
+import ThirdPhoto from '../assets/photos/paris.jpg';
+import FourthPhoto from '../assets/photos/propuesta.jpg'
 import { Parallax } from 'rc-scroll-anim';
+import { parallaxAnimation, parallaxAnimationLast, getParallaxStyle, primeraLinea, segundaLinea, tercerLinea, cuartaLinea, primerFecha, segundaFecha, tercerFecha, cuartaFecha, titulo} from '../constants/timeline'; 
+
+
 
 const TitleContainer = styled.div`
   display: flex;
@@ -73,7 +76,7 @@ const ResponsiveImage = styled.img`
   border-radius: 2px;
 `;
 
-const Column: React.FC<{ items: { type?: 'text' | 'image'; value: string, secondaryValue?: string }[] }> = ({ items }) => {
+const Column: React.FC<{ items: { type?: 'text' | 'image'; value: any, secondaryValue?: string }[] }> = ({ items }) => {
   return (
     <StyledColumn>
       {items.map((item, index) => (
@@ -81,8 +84,8 @@ const Column: React.FC<{ items: { type?: 'text' | 'image'; value: string, second
           <Content>
             {item.type === 'text' || !item.type ? (
               <Parallax
-                animation={{ x: 0, playScale: index === items.length - 1 ? [0, 0.1] : [0.05, 0.3] }}
-                style={{ transform: `translateX(${index % 2 === 0 ? '100px' : '-100px'})`, margin: '10px auto' }}
+                animation={index === items.length - 1 ? parallaxAnimationLast : parallaxAnimation}
+                style={getParallaxStyle(index)}
               >
                 <div>
                   <Subtitle>{item.value}</Subtitle>
@@ -104,23 +107,23 @@ const Column: React.FC<{ items: { type?: 'text' | 'image'; value: string, second
 
 export default function Timeline() {
   const leftItems = [
-    { type: 'image', value: Met },
-    { type: 'text', value: 'Primera cita', secondaryValue: '18/12/2021' },
-    { type: 'image', value: Couple },
-    { type: 'text', value: 'Nos comprometimos', secondaryValue: '19/08/2024' },
+    { type: 'image', value: FirstPhoto },
+    { type: 'text', value: segundaLinea, secondaryValue: segundaFecha },
+    { type: 'image', value: ThirdPhoto },
+    { type: 'text', value: cuartaLinea, secondaryValue: cuartaFecha },
   ];
 
   const rightItems = [
-    { type: 'text', value: 'Nos conocimos', secondaryValue: '19/09/2021' },
-    { type: 'image', value: FirstDate },
-    { type: 'text', value: 'Nos hicimos novios', secondaryValue: '16/03/2022' },
-    { type: 'image', value: Proposal },
+    { type: 'text', value: primeraLinea, secondaryValue: primerFecha },
+    { type: 'image', value: SecondPhoto },
+    { type: 'text', value: tercerLinea, secondaryValue: tercerFecha },
+    { type: 'image', value: FourthPhoto },
   ];
 
   return (
     <Section>
       <TitleContainer>
-        <TitleCursive>Nuestra historia</TitleCursive>
+        <TitleCursive>{titulo}</TitleCursive>
       </TitleContainer>
       <TimelineContainer>
         <Column items={leftItems} />
